@@ -40,8 +40,8 @@ def configure_server():
 
 @task
 def restart_services():
-    run("service nginx restart")
-    run("service uwsgi restart")
+    sudo("service nginx restart")
+    sudo("service uwsgi restart")
 
 
 @task
