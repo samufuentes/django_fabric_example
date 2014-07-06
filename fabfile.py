@@ -40,12 +40,13 @@ def configure_server():
         sudo("cp production_files/uwsgi.conf /etc/init/uwsgi.conf")
         sudo("cp production_files/nginx_example /etc/nginx/sites-available")
         sudo("ln -s /etc/nginx/sites-available/nginx_example /etc/nginx/sites-enabled/nginx_example")
+        sudo("cp production_files/celery.conf /etc/init/celery.conf")
 
 @task
 def restart_services():
     sudo("service nginx restart")
     sudo("service uwsgi restart")
-
+    sudo("service celery restart")
 
 @task
 def first_deploy():
@@ -62,7 +63,6 @@ def first_deploy():
 def pull():
     with cd(project_name):
         run("git pull origin master")
-
 
 @task
 def deploy():
