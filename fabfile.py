@@ -46,7 +46,7 @@ def restart_services():
 
 @task
 def first_deploy():
-    prepare_dependancies()
+    install_dependancies()
     # Avoid rsa prompt
     run('echo -e "Host github.com\n\tStrictHostKeyChecking no\n" >> ~/.ssh/config')
     run("git clone %s" %git_repo_remote)
