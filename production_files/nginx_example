@@ -2,12 +2,6 @@ server {
 	listen 80 default_server;
 	listen [::]:80 default_server ipv6only=on;
 
-	root /usr/share/nginx/html;
-	index index.html index.htm;
-
-	# Make site accessible from http://localhost/
-	server_name localhost;
-
 	location / {
 		uwsgi_pass unix:/tmp/uwsgi.sock;
 		include /etc/nginx/uwsgi_params;
