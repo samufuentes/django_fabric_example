@@ -56,8 +56,13 @@ def first_deploy():
     restart_services()
 
 @task
-def deploy():
+def pull():
     with cd(project_name):
         run("git pull origin master")
+
+
+@task
+def deploy():
+    pull()
     install_requirements()
     restart_services()
