@@ -39,6 +39,7 @@ def configure_server():
     with cd(project_name):
         sudo("cp production_files/uwsgi.conf /etc/init/uwsgi.conf")
         sudo("cp production_files/nginx_example /etc/nginx/sites-available")
+        sudo("rm /etc/nginx/sites-enabled/default")
         sudo("ln -s /etc/nginx/sites-available/nginx_example /etc/nginx/sites-enabled/nginx_example")
         sudo("cp production_files/celery.conf /etc/init/celery.conf")
 
