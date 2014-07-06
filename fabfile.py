@@ -15,9 +15,12 @@ def install_dependancies():
 
     sudo("apt-get -y install build-essential")
     sudo("apt-get -y install python-dev")
+
+    sudo("apt-get -y install nginx")
+    sudo("apt-get -y install rabbitmq-server")
+
     sudo("apt-get -y install git-core")
     sudo("apt-get -y install python-setuptools")
-    sudo("apt-get -y install nginx")
     sudo("easy_install pip")
     sudo("pip install virtualenv")
 
