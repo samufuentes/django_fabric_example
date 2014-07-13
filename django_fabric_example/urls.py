@@ -7,7 +7,7 @@ admin.autodiscover()
 
 urlpatterns = patterns('',
     # Examples:
-#    url(r'^$', 'django_fabric_example.views.home', name='home'),
+    url(r'^$', 'django_fabric_example.views.home', name='home'),
     # url(r'^blog/', include('blog.urls')),
     url( r'^autodeploy/', include('auto_deploy.urls', namespace='auto_deploy')),
 
