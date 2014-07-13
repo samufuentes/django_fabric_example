@@ -80,7 +80,8 @@ def auto_deploy():
     print("Requirements updated")
     local("sudo service nginx restart")
     print("nginx restarted")
-    local("sudo service uwsgi restart")
-    print("uwsgi restarted")
     local("sudo service celery restart")
     print("celery restarted")
+    print("----- About to restart uwsgi")
+# uwsgi needs to be restarted the latest since it'll kill the server!
+    local("sudo service uwsgi restart")
