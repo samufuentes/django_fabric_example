@@ -70,3 +70,12 @@ def deploy():
     pull()
     install_requirements()
     restart_services()
+
+@task
+def auto_deploy():
+    with cd(project_name):
+        local("git pull origin master")
+        local("env/bin/pip install -r requirements.txt")
+        local("sudo service nginx restart")
+        local("sudo service uwsgi restart")
+        local("sudo service celery restart")
