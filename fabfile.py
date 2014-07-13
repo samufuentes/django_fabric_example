@@ -75,7 +75,12 @@ def deploy():
 def auto_deploy():
     local_dir_name = os.path.dirname(os.path.realpath(__file__))
     local("cd %s; git pull origin master" %local_dir_name)
+    print("Git repo pulled")
     local("cd %s; env/bin/pip install -r requirements.txt" %local_dir_name)
+    print("Requirements updated")
     local("sudo service nginx restart")
+    print("nginx restarted")
     local("sudo service uwsgi restart")
+    print("uwsgi restarted")
     local("sudo service celery restart")
+    print("celery restarted")
