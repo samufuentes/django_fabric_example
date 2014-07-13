@@ -2,7 +2,7 @@ import os
 
 from fabric.api import *
 
-env.hosts = ['ubuntu@10.211.55.6']
+#env.hosts = ['ubuntu@10.211.55.6']
 
 path, project_name = os.path.split(os.getcwd())
 git_repo_remote = 'https://github.com/samufuentes/django_fabric_example.git'
@@ -73,9 +73,9 @@ def deploy():
 
 @task
 def auto_deploy():
-    with cd(project_name):
-        local("git pull origin master")
-        local("env/bin/pip install -r requirements.txt")
-        local("sudo service nginx restart")
-        local("sudo service uwsgi restart")
-        local("sudo service celery restart")
+    local_dir_name = os.path.dirname(os.path.realpath(__file__))
+    local("cd %s; git pull origin master" %local_dir_name)
+    local("cd %s; env/bin/pip install -r requirements.txt" %local_dir_name)
+    local("sudo service nginx restart")
+    local("sudo service uwsgi restart")
+    local("sudo service celery restart")
