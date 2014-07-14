@@ -27,6 +27,8 @@ There are examples of the configuration of the services in the folder "productio
 
 The script is not doing anything with the statics or with the DB. You need to add those to the configuration.
 
+The Django settings are in DEBUG mode. Don't run in this mode in production.
+
 Auto-deploy
 ~~~~~~~~~~~
 
