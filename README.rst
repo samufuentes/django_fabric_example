@@ -45,4 +45,4 @@ Example of a simple github flow when developing
 
 Preparation: connect travis to your repo. Connect a github hook for auto-deploy to a staging server. Clone repo locally.
 
-Pull. Create a branch and edit. Pull and merge. Test; if green, push your branch to github. Check travis for build status; if green, do a pull request. Merge pull request into master, auto-deployment will trigger. Check staging server. If all goes well manually deploy to production as explained above.
+Pull. Create a branch and edit. Pull and merge. Test; if green, push your branch to github and issue a Pull Request. In the PR check the build status from travis; if green, merge into master. Auto-deployment will trigger. Check staging server. If all goes well manually deploy to production as explained above.
