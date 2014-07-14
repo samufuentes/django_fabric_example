@@ -19,9 +19,6 @@ def home(request):
                 e = sys.exc_info()
                 print e
             finally:
-                # This line will only get executed if there's an error,
-                # since otherwise the server will get restarted
-                # TODO: make auto_deploy async
                 return HttpResponse('Deployed: %s' %deployed)
         return HttpResponse('Not deployed')
     return HttpResponse('Not deployed')

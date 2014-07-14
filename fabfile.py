@@ -44,6 +44,12 @@ def configure_server():
         sudo("cp production_files/celery.conf /etc/init/celery.conf")
 
 @task
+def reload_services():
+    sudo("service nginx reload")
+    sudo("service uwsgi reload")
+    sudo("service celery restart")
+
+@task
 def restart_services():
     sudo("service nginx restart")
     sudo("service uwsgi restart")
@@ -69,19 +75,13 @@ def pull():
 def deploy():
     pull()
     install_requirements()
-    restart_services()
+    reload_services()
 
 @task
 def auto_deploy():
     local_dir_name = os.path.dirname(os.path.realpath(__file__))
     local("cd %s; git pull origin master" %local_dir_name)
-    print("Git repo pulled")
     local("cd %s; env/bin/pip install -r requirements.txt" %local_dir_name)
-    print("Requirements updated")
-    local("sudo service nginx restart")
-    print("nginx restarted")
+    local("sudo service nginx reload")
+    local("sudo service uwsgi reload")
     local("sudo service celery restart")
-    print("celery restarted")
-    print("----- About to restart uwsgi")
-# uwsgi needs to be restarted the latest since it'll kill the server!
-    local("sudo service uwsgi restart")
